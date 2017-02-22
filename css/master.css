@@ -1,8 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo|Raleway');
+
+html, div, p, h1, h2, h3, a, span {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: inherit;
+  font-style: inherit;
+  font-family: 'Raleway', sans-serif;
+
+}
+
+h1, h2, h3{
+  font-family: 'Baloo', cursive;
+}
+h2{
+  font-size: 20px;
+}
 .calendar{
-  width: 400px;
-  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.calendar h1{
+  font-size: 30px;
+  text-align: center;
+  margin:  auto;
+}
+.subtitle{
+  font-size: 16px;
+  font-style: italic;
+  width: 40%;
+  margin: 10px auto;
+  text-align: center;
+}
+.clickable{
+  cursor: pointer;
+}
+.clicked{
+  background-color: red;
+}
+div.events{
+  margin: 30px;
+  width: 50%;
+  border: 1px solid gray;
+  border-top: 0px;
+  border-radius: 5px;
+}
+div.displayed-events{
+  margin: 30px auto;
+  width: 75%;
+
+}
+div.tabs{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+.tabs div{
+  border: 1px solid gray;
+  border-bottom: 0px;
+  padding: 10px;
+  width: 30%;
+  border-radius: 5px;
+  text-align: center;
+}
+div.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+}
+.event{
+  margin: 10px;
+
+}
+.event-data div{
+  padding-right: 20px;
+}
+
+div.event-data{
+  margin-left: 10px;
+}
+.big-number{
+  width: 40px;
+  max-width: 40px;
+  background-color: blue;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  padding: 10px;
+
+}
+
+div.invited{
+  width: 100px;
+}
+.-cancelled *{
+  font-style: italic;
+  background-color: LightGray !important;
 }
 .r-calendar{
+
     background-color: #eee;
     -moz-box-shadow: 0 0 5px #ccc;
     -webkit-box-shadow: 0 0 5px #ccc;
@@ -141,10 +245,17 @@
     display: block;
     padding-bottom: 100%;
 }
-.r-calendar .r-inner{
+ .r-inner{
     position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
     flex-flow: column nowrap;
+    margin: auto;
+}
+.r-calendar{
+  position: relative;
+  width: 30%;
+  height: 30%;
+  margin: 35px auto;
 }

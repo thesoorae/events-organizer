@@ -9709,15 +9709,21 @@ var Events = function (_React$Component) {
       this.storeEvents();
     }
   }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      this.storeEvents();
+    }
+  }, {
     key: 'display',
     value: function display(type) {
       if (type == 'day') {
-        if (this.state.dayEvents.length > 0) this.setState({ displayedEvents: this.state.dayEvents });
+
+        this.setState({ displayedEvents: this.state.dayEvents });
       } else if (type == 'month') {
-        if (this.state.monthEvents.length > 0) this.setState({ displayedEvents: this.state.monthEvents });
+        this.setState({ displayedEvents: this.state.monthEvents });
       }
       if (type == 'all') {
-        if (this.state.allEvents.length > 0) this.setState({ displayedEvents: this.state.allEvents });
+        this.setState({ displayedEvents: this.state.allEvents });
       }
     }
   }, {
@@ -9759,40 +9765,48 @@ var Events = function (_React$Component) {
         { className: 'events' },
         _react2.default.createElement(
           'div',
-          { className: 'day-events clickable', onClick: function onClick() {
-              _this3.display('day');
-            } },
+          { className: 'tabs' },
           _react2.default.createElement(
-            'h3',
-            null,
-            date,
-            ' Events'
+            'div',
+            { className: 'day-events clickable', onClick: function onClick() {
+                _this3.display('day');
+              } },
+            _react2.default.createElement(
+              'h2',
+              null,
+              date,
+              ' Events'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'month-events clickable', onClick: function onClick() {
+                _this3.display('month');
+              } },
+            _react2.default.createElement(
+              'h2',
+              null,
+              this.props.monthName,
+              ' Events'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'all-events clickable', onClick: function onClick() {
+                _this3.display('all');
+              } },
+            _react2.default.createElement(
+              'h2',
+              null,
+              'All Events'
+            )
           )
         ),
         _react2.default.createElement(
           'div',
-          { className: 'month-events clickable', onClick: function onClick() {
-              _this3.display('month');
-            } },
-          _react2.default.createElement(
-            'h3',
-            null,
-            this.props.monthName,
-            ' Events'
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'all-events clickable', onClick: function onClick() {
-              _this3.display('all');
-            } },
-          _react2.default.createElement(
-            'h3',
-            null,
-            'All Events'
-          )
-        ),
-        this.state.displayedEvents
+          { className: 'displayed-events' },
+          this.state.displayedEvents
+        )
       );
     }
   }]);
@@ -22090,6 +22104,16 @@ var Root = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'calendar' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Special Occasions'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'subtitle' },
+          'Click on the calendar and tabs below to see special occasions for a particular day or month. Click on \'All Events\' to see all your saved events.'
+        ),
         _react2.default.createElement(_calendar2.default, null)
       );
     }
@@ -22145,35 +22169,52 @@ var Event = function (_React$Component) {
       }
       return _react2.default.createElement(
         "div",
-        { className: "event" },
+        { className: "event " + cancelled },
         _react2.default.createElement(
           "div",
-          { className: "title " + cancelled },
+          { className: "row" },
           _react2.default.createElement(
-            "h2",
-            null,
-            event.occasion,
-            " ",
-            cancelled
-          )
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "date" },
-          date
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "invited" },
-          _react2.default.createElement(
-            "h3",
-            null,
-            "Number of Attendees"
+            "div",
+            { className: "big-number" },
+            event.day
           ),
           _react2.default.createElement(
-            "span",
-            null,
-            event.invited_count
+            "div",
+            { className: "event-data" },
+            _react2.default.createElement(
+              "div",
+              { className: "row" },
+              _react2.default.createElement(
+                "div",
+                { className: "title" },
+                _react2.default.createElement(
+                  "h2",
+                  null,
+                  event.occasion,
+                  " ",
+                  cancelled
+                )
+              ),
+              _react2.default.createElement(
+                "div",
+                { className: "date" },
+                date
+              )
+            ),
+            _react2.default.createElement(
+              "div",
+              { className: "row" },
+              _react2.default.createElement(
+                "div",
+                { className: "invited" },
+                "Number of Attendees"
+              ),
+              _react2.default.createElement(
+                "div",
+                null,
+                event.invited_count
+              )
+            )
           )
         )
       );

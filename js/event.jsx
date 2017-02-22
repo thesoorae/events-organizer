@@ -13,10 +13,22 @@ render(){
   }
   return(
 
-    <div className="event">
-    <div className ={`title ${cancelled}`}><h2>{event.occasion} {cancelled}</h2></div>
-    <div className="date">{date}</div>
-    <div className="invited"><h3>Number of Attendees</h3><span>{event.invited_count}</span></div>
+    <div className={`event ${cancelled}`}>
+      <div className="row">
+      <div className="big-number">
+        {event.day}
+      </div>
+      <div className="event-data">
+      <div className="row">
+        <div className ={`title`}><h2>{event.occasion} {cancelled}</h2></div>
+        <div className="date">{date}</div>
+      </div>
+      <div className="row">
+        <div className="invited">Number of Attendees</div>
+        <div>{event.invited_count}</div>
+    </div>
+    </div>
+    </div>
     </div>
   );
 }

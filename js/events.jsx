@@ -47,13 +47,18 @@ constructor(props){
 componentDidMount(){
   this.storeEvents();
 }
+componentDidUpdate(){
+  this.storeEvents();
+}
   display(type){
     if(type == 'day'){
-      if (this.state.dayEvents.length>0) this.setState({displayedEvents: this.state.dayEvents}) ;
+
+        this.setState({displayedEvents: this.state.dayEvents});
+
     } else if(type == 'month'){
-      if (this.state.monthEvents.length>0) this.setState({displayedEvents: this.state.monthEvents});}
+      this.setState({displayedEvents: this.state.monthEvents});}
     if(type == 'all'){
-      if (this.state.allEvents.length>0)this.setState({displayedEvents: this.state.allEvents});}
+      this.setState({displayedEvents: this.state.allEvents});}
 }
 
 storeEvents(){
@@ -87,17 +92,20 @@ console.log(this.props.month);
 
   return(
     <div className="events" >
+    <div className="tabs">
       <div className="day-events clickable" onClick={()=>{this.display('day');}}>
-        <h3>{date} Events</h3>
+        <h2>{date} Events</h2>
     </div>
     <div className="month-events clickable" onClick={()=>{this.display('month');}}>
-      <h3>{this.props.monthName} Events</h3>
+      <h2>{this.props.monthName} Events</h2>
     </div>
     <div className="all-events clickable" onClick={()=>{this.display('all');}}>
-      <h3>All Events</h3>
+      <h2>All Events</h2>
     </div>
+    </div>
+    <div className="displayed-events">
     {this.state.displayedEvents}
-
+</div>
 </div>
   );
 }
