@@ -6811,7 +6811,6 @@ var Events = function (_React$Component) {
   }, {
     key: 'display',
     value: function display(type) {
-
       if (type == 'day') {
         this.setState({
           displayedEvents: this.state.dayEvents,
@@ -6846,18 +6845,15 @@ var Events = function (_React$Component) {
       var monthEvents = [];
       var dayEvents = [];
       var allEvents = [];
-      console.log("in store events");
       this.state['events'].forEach(function (event) {
         allEvents.push(_react2.default.createElement(_event2.default, { event: event }));
         if (event.month == props.month + 1 && event.year == _this2.props.year) {
           monthEvents.push(_react2.default.createElement(_event2.default, { event: event }));
           if (event.day == props.date) {
-
             dayEvents.push(_react2.default.createElement(_event2.default, { event: event }));
           }
         }
       });
-      console.log("dayEvents", dayEvents);
       if (monthEvents.length == 0) monthEvents = "No events to display for this month";
       if (dayEvents.length == 0) dayEvents = "No events to display for this day";
       this.setState({

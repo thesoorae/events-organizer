@@ -48,91 +48,87 @@ constructor(props){
     this.storeEvents = this.storeEvents.bind(this);
     this.display = this.display.bind(this);
   }
-componentDidMount(){
-  this.storeEvents();
-}
-componentWillReceiveProps(nextProps){
-  this.storeEvents(nextProps);
-}
-display(type){
-
-    if(type == 'day'){
+  componentDidMount(){
+    this.storeEvents();
+  }
+  componentWillReceiveProps(nextProps){
+    this.storeEvents(nextProps);
+  }
+  display(type){
+      if(type == 'day'){
+          this.setState({
+            displayedEvents: this.state.dayEvents,
+            dayTab: 'clicked',
+            monthTab: '',
+            allTab: ''
+          });
+      } else if(type == 'month'){
         this.setState({
-          displayedEvents: this.state.dayEvents,
-          dayTab: 'clicked',
-          monthTab: '',
+          displayedEvents: this.state.monthEvents,
+          dayTab: '',
+          monthTab: 'clicked',
           allTab: ''
+        });}
+      if(type == 'all'){
+        this.setState({
+          displayedEvents: this.state.allEvents,
+          dayTab: '',
+          monthTab: '',
+          allTab: 'clicked'
         });
-    } else if(type == 'month'){
-      this.setState({
-        displayedEvents: this.state.monthEvents,
-        dayTab: '',
-        monthTab: 'clicked',
-        allTab: ''
-      });}
-    if(type == 'all'){
-      this.setState({
-        displayedEvents: this.state.allEvents,
-        dayTab: '',
-        monthTab: '',
-        allTab: 'clicked'
-      });}
-}
+      }
+  }
 
-storeEvents(props = this.props){
-  let monthEvents = [];
-  let dayEvents = [];
-  let allEvents = [];
-  console.log("in store events");
-  this.state['events'].forEach((event) => {
-    allEvents.push(<Event event={event} />);
-    if(event.month == (props.month + 1)  && event.year == this.props.year){
-      monthEvents.push(<Event event={event} />);
-    if(event.day == props.date){
+  storeEvents(props = this.props){
+    let monthEvents = [];
+    let dayEvents = [];
+    let allEvents = [];
+    this.state['events'].forEach((event) => {
+      allEvents.push(<Event event={event} />);
+      if(event.month == (props.month + 1)  && event.year == this.props.year){
+        monthEvents.push(<Event event={event} />);
+      if(event.day == props.date){
+        dayEvents.push(<Event event={event} />);
+      }}
+    });
+    if (monthEvents.length == 0) monthEvents = "No events to display for this month";
+    if(dayEvents.length == 0) dayEvents = "No events to display for this day";
+    this.setState({
+      monthEvents: monthEvents,
+      dayEvents: dayEvents,
+      allEvents: allEvents
+    });
+  }
 
-      dayEvents.push(<Event event={event} />);
-    }}
-  });
-  console.log("dayEvents", dayEvents);
-  if (monthEvents.length == 0) monthEvents = "No events to display for this month";
-  if(dayEvents.length == 0) dayEvents = "No events to display for this day";
-  this.setState({
-    monthEvents: monthEvents,
-    dayEvents: dayEvents,
-    allEvents: allEvents
-  });
-}
+  render(){
 
-render(){
+  let date = `${this.props.monthName} ${this.props.date}`;
 
-let date = `${this.props.monthName} ${this.props.date}`;
-
-
-  return(
-    <div className="events" >
-    <div className="tabs">
-      <div className="day-events clickable tab-container" onClick={()=>{this.display('day');}}>
-      <div className={`tab ${this.state.dayTab}`}>
-        <h2>{date} Events</h2>
+    return(
+      <div className="events" >
+      <div className="tabs">
+        <div className="day-events clickable tab-container" onClick={()=>{this.display('day');}}>
+          <div className={`tab ${this.state.dayTab}`}>
+          <h2>{date} Events</h2>
+          </div>
         </div>
-    </div>
-    <div className="month-events clickable tab-container" onClick={()=>{this.display('month');}}>
-    <div className={`tab ${this.state.monthTab}`}>
-      <h2>{this.props.monthName} Events</h2>
-    </div>
-    </div>
-    <div className="all-events clickable tab-container" onClick={()=>{this.display('all');}}>
-    <div className={`tab ${this.state.allTab}`}>
-      <h2>All Events</h2>
+        <div className="month-events clickable tab-container" onClick={()=>{this.display('month');}}>
+          <div className={`tab ${this.state.monthTab}`}>
+            <h2>{this.props.monthName} Events</h2>
+          </div>
+        </div>
+      <div className="all-events clickable tab-container" onClick={()=>{this.display('all');}}>
+        <div className={`tab ${this.state.allTab}`}>
+          <h2>All Events</h2>
+        </div>
       </div>
     </div>
-    </div>
     <div className="displayed-events">
-    {this.state.displayedEvents}
-</div>
-</div>
-  );
-}
+      {this.state.displayedEvents}
+    </div>
+  </div>
+    );
+  }
 }
 
 module.exports = Events;
