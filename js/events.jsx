@@ -47,32 +47,35 @@ constructor(props){
 componentDidMount(){
   this.storeEvents();
 }
-componentDidUpdate(){
-  this.storeEvents();
+componentWillReceiveProps(nextProps){
+  this.storeEvents(nextProps);
 }
-  display(type){
+display(type){
+
     if(type == 'day'){
-
         this.setState({displayedEvents: this.state.dayEvents});
-
+        console.log("in display day");
     } else if(type == 'month'){
       this.setState({displayedEvents: this.state.monthEvents});}
     if(type == 'all'){
       this.setState({displayedEvents: this.state.allEvents});}
 }
 
-storeEvents(){
+storeEvents(props = this.props){
   let monthEvents = [];
   let dayEvents = [];
   let allEvents = [];
+  console.log("in store events");
   this.state['events'].forEach((event) => {
     allEvents.push(<Event event={event} />);
-    if(event.month == (this.props.month + 1)  && event.year == this.props.year){
+    if(event.month == (props.month + 1)  && event.year == this.props.year){
       monthEvents.push(<Event event={event} />);
-    if(event.day == this.props.date){
+    if(event.day == props.date){
+
       dayEvents.push(<Event event={event} />);
     }}
   });
+  console.log("dayEvents", dayEvents);
   this.setState({
     monthEvents: monthEvents,
     dayEvents: dayEvents,
@@ -84,9 +87,10 @@ render(){
 
 let date = `${this.props.monthName} ${this.props.date}, ${this.props.year}`;
 
-console.log(this.props.monthName);
+console.log(this.state);
 console.log(this.props.date);
 console.log(this.props.month);
+console.log(this.state.dayEvents);
 
 
 

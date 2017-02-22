@@ -6,7 +6,7 @@ class Event extends React.Component{
 
 render(){
   event = this.props.event;
-  let date = monthNamesFull[(event.month) % 12] + ' ' + event.day + ', ' + event.year;
+  let date = monthNamesFull[(event.month -1) % 12] + ' ' + event.day + ', ' + event.year;
   let cancelled = '';
   if(event.cancelled){
     cancelled = '-cancelled';

@@ -84,6 +84,7 @@ var Calendar = React.createClass({
         });
     },
     render: function () {
+      console.log("calendar state", this.state);
         return React.createElement(
           'div',
           {className: 'container'},
@@ -93,12 +94,12 @@ var Calendar = React.createClass({
             React.createElement(
                 'div',
                 { className: 'r-inner' },
-                React.createElement(Header, { monthNames: this.state.monthNamesFull, month: this.state.month + 1, year: this.state.year, onPrev: this.getPrev, onNext: this.getNext }),
+                React.createElement(Header, { monthNames: this.state.monthNamesFull, month: this.state.month, year: this.state.year, onPrev: this.getPrev, onNext: this.getNext }),
                 React.createElement(WeekDays, { dayNames: this.state.dayNames, startDay: this.state.startDay, weekNumbers: this.state.weekNumbers }),
                 React.createElement(MonthDates, { month: this.state.month, year: this.state.year, daysInMonth: this.state.daysInMonth, firstOfMonth: this.state.firstOfMonth, startDay: this.state.startDay, onSelect: this.selectDate, weekNumbers: this.state.weekNumbers, disablePast: this.state.disablePast, minDate: this.state.minDate })
             ),
         ),
-          React.createElement(Events, {year: this.state.year, date:this.state.selectedDate, month: (this.state.month + 2 % 12), monthName: this.state.monthNamesFull[(this.state.month + 1) %12]})
+          React.createElement(Events, {year: this.state.year, date:this.state.selectedDate, month: (this.state.month), monthName: this.state.monthNamesFull[this.state.month]})
         )
     }
 });
@@ -115,7 +116,7 @@ var Header = React.createClass({
             React.createElement(
                 'div',
                 { className: 'r-cell r-title' },
-                `${this.props.monthNames[this.props.month%12]} ${this.props.year}`,
+                `${this.props.monthNames[this.props.month]} ${this.props.year}`,
 
             ),
             React.createElement('div', { className: 'r-cell r-next', onClick: this.props.onNext.bind(this), role: 'button', tabIndex: '0' })
