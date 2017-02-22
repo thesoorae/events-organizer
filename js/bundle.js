@@ -22238,7 +22238,7 @@ var Root = function (_React$Component) {
         _react2.default.createElement(
           'h1',
           null,
-          'Intercom Special Occasions'
+          'OrganisR'
         ),
         _react2.default.createElement(
           'div',
