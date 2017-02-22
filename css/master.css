@@ -7,11 +7,12 @@ html, div, p, h1, h2, h3, a, span {
   font-size: inherit;
   font-style: inherit;
   font-family: 'Raleway', sans-serif;
+  color: #3A3A38	;
 
 }
 
 h1, h2, h3{
-  font-family: 'Baloo', cursive;
+  font-family: 'Baloo', sans-serif;
 }
 h2{
   font-size: 20px;
@@ -19,41 +20,65 @@ h2{
 .calendar{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
+  background: rgba(147,206,222,1);
+  background: -moz-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(147,206,222,1)), color-stop(41%, rgba(117,189,209,1)), color-stop(100%, rgba(73,165,191,1)));
+  background: -webkit-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  background: -o-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  background: -ms-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  background: linear-gradient(to right, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(73,165,191,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#49a5bf', GradientType=1 );
+  height: 100vh;
 }
 .container{
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-top: 30px;
 }
+
 .calendar h1{
-  font-size: 30px;
+  font-size: 50px;
+  font-weight: normal;
   text-align: center;
-  margin:  auto;
+  margin: 30px auto;
+  margin-bottom: 10px;
+  color: #FAF2EB;
 }
 .subtitle{
-  font-size: 16px;
-  font-style: italic;
+  font-size: 18px;
   width: 40%;
-  margin: 10px auto;
+  margin: 0px auto;
   text-align: center;
+  color: #FAF2EB;
+
 }
 .clickable{
+  width: 30%;
   cursor: pointer;
 }
-.clicked{
-  background-color: red;
+
+.clicked h2{
+  color: #59B88C;
+
 }
 div.events{
-  margin: 30px;
+  margin: 30px auto;
+  min-height: 350px;
   width: 50%;
-  border: 1px solid gray;
-  border-top: 0px;
+  /*border: 1px solid gray;
+  border-top: 0px;*/
   border-radius: 5px;
+  background-color: #FAF2EB;
+  -webkit-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.27);
+-moz-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.27);
+box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.27);
 }
 div.displayed-events{
   margin: 30px auto;
-  width: 75%;
+  width: 90%;
+
 
 }
 div.tabs{
@@ -62,13 +87,28 @@ div.tabs{
   justify-content: space-between;
 
 }
-.tabs div{
-  border: 1px solid gray;
-  border-bottom: 0px;
-  padding: 10px;
-  width: 30%;
+.tab-container{
+  /*border: 1px solid gray;
+  border-bottom: 0px;*/
+  width: 33%;
+  height: 70px;
   border-radius: 5px;
   text-align: center;
+  overflow: hidden;
+
+
+}
+.tab {
+  width: 80%;
+  height: 90px;
+  padding: 20px 10px;
+  -webkit-box-shadow: 17px 17px 24px -5px rgba(0,0,0,0.23);
+  -moz-box-shadow: 17px 17px 24px -5px rgba(0,0,0,0.23);
+  box-shadow: 17px 17px 24px -5px rgba(0,0,0,0.23);
+}
+.tab:hover h2{
+
+    color: #59B88C;
 }
 div.row{
   display: flex;
@@ -90,17 +130,29 @@ div.event-data{
 .big-number{
   width: 40px;
   max-width: 40px;
-  background-color: blue;
+  background-color: #A3D8BF;
   color: white;
   text-align: center;
   font-size: 30px;
   padding: 10px;
 
 }
-
+.title h2{
+  font-size: 18px;
+}
+.date{
+  margin: auto;
+}
 div.invited{
   width: 100px;
+  font-family: 'Baloo', sans-serif;
+  font-size: 14px;
 }
+.attend{
+  margin: auto 0;
+  font-size: 20px;
+}
+
 .-cancelled *{
   font-style: italic;
   background-color: LightGray !important;
@@ -130,7 +182,7 @@ div.invited{
     justify-content: center;
 }
 .r-calendar .r-cell{
-    background-color: #ffffff;
+    background-color: #FAF2EB;
     align-items: center;
     display: flex;
     flex-flow: row nowrap;
@@ -146,7 +198,7 @@ div.invited{
 }
 .r-calendar .r-prev,
 .r-calendar .r-next{
-    background-color: #ffffff;
+    background-color: #FAF2EB;
     cursor: pointer;
     outline: none;
 }
@@ -167,8 +219,8 @@ div.invited{
     margin-left: 0.3em;
 }
 .r-calendar .r-prev:hover:before{
-    border-left-color: #ffffff;
-    border-top-color: #ffffff;
+    border-left-color: #FAF2EB;
+    border-top-color: #FAF2EB;
 }
 .r-calendar .r-next:before{
     border-right: 0.2em solid #222222;
@@ -176,12 +228,12 @@ div.invited{
     margin-right: 0.3em;
 }
 .r-calendar .r-next:hover:before{
-    border-right-color: #ffffff;
-    border-top-color: #ffffff;
+    border-right-color:#FAF2EB;
+    border-top-color: #FAF2EB;
 }
 .r-calendar .r-prev:hover,
 .r-calendar .r-next:hover{
-    background-color: #0066CC;
+    background-color: #A3D8BF;
 }
 .r-calendar .r-title{
     flex-grow: 5;
@@ -207,25 +259,25 @@ div.invited{
     flex-grow: 1;
 }
 .r-calendar .r-dates .r-cell{
-    background-color: #ffffff;
-    border: solid 1px #ffffff;
+    background-color: #FAF2EB;
+    border: solid 1px #FAF2EB;
 }
 .r-calendar .r-cell.r-date{
     cursor: pointer;
     outline: none;
 }
 .r-calendar .r-cell.r-date.r-today{
-    background-color: #ffffff;
+    background-color: #FAF2EB;
     border: solid 1px #0066CC;
 }
 .r-calendar .r-cell.r-date:not(.r-past):hover{
-    background-color: #0066CC;
-    border: solid 1px #0066CC;
+    background-color: #A3D8BF;
+    border: solid 1px #A3D8BF;
     color: #ffffff;
 }
 .r-calendar .r-cell.r-date.r-selected{
-    background-color: #000000;
-    border: solid 1px #000000;
+    background-color: #59B88C;
+    border: solid 1px #59B88C;
     color: #fff;
 }
 .r-calendar .r-cell.r-date.r-past{
@@ -252,10 +304,38 @@ div.invited{
     display: flex;
     flex-flow: column nowrap;
     margin: auto;
+
 }
 .r-calendar{
   position: relative;
-  width: 30%;
-  height: 30%;
+  width: 33%;
+  height: 33%;
   margin: 35px auto;
+  border-radius: 5px;
+      background-color: #FAF2EB;
+
+  -webkit-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.27);
+-moz-box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.27);
+box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.27);
+}
+.r-title{
+  font-family: 'Baloo', sans-serif;
+  font-size: 25px;
+color: #59B88C	;
+
+}
+@media screen and (max-width: 950px) {
+  .tab h2{
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 800px) {
+    .container {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .tab h2{
+      font-size: 14px;
+    }
+
 }

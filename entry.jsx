@@ -10,10 +10,10 @@ class Root extends React.Component {
     return(
 
       <div className="calendar">
-        <h1>Special Occasions</h1>
+        <h1>Intercom Special Occasions</h1>
         <div className="subtitle">
         Click on the calendar and tabs below to see special occasions for a particular
-         day or month. Click on 'All Events' to see all your saved events.
+         day or month. <br />'All Events' shows all your saved events.
         </div>
         <Calendar />
 

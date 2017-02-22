@@ -99,7 +99,7 @@ var Calendar = React.createClass({
                 React.createElement(MonthDates, { month: this.state.month, year: this.state.year, daysInMonth: this.state.daysInMonth, firstOfMonth: this.state.firstOfMonth, startDay: this.state.startDay, onSelect: this.selectDate, weekNumbers: this.state.weekNumbers, disablePast: this.state.disablePast, minDate: this.state.minDate })
             ),
         ),
-          React.createElement(Events, {year: this.state.year, date:this.state.selectedDate, month: (this.state.month), monthName: this.state.monthNamesFull[this.state.month]})
+          React.createElement(Events, {year: this.state.year, date:this.state.selectedDate, month: (this.state.month), monthName: this.state.monthNames[this.state.month]})
         )
     }
 });

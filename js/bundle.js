@@ -6761,7 +6761,11 @@ var Events = function (_React$Component) {
       dayEvents: [],
       monthEvents: [],
       allEvents: [],
-      displayedEvents: 'No events to display',
+      displayedEvents: 'No events to display for this day',
+      dayTab: '',
+      monthTab: '',
+      allTab: '',
+
       "events": [{
         "occasion": "Birthday party",
         "invited_count": 120,
@@ -6809,13 +6813,27 @@ var Events = function (_React$Component) {
     value: function display(type) {
 
       if (type == 'day') {
-        this.setState({ displayedEvents: this.state.dayEvents });
-        console.log("in display day");
+        this.setState({
+          displayedEvents: this.state.dayEvents,
+          dayTab: 'clicked',
+          monthTab: '',
+          allTab: ''
+        });
       } else if (type == 'month') {
-        this.setState({ displayedEvents: this.state.monthEvents });
+        this.setState({
+          displayedEvents: this.state.monthEvents,
+          dayTab: '',
+          monthTab: 'clicked',
+          allTab: ''
+        });
       }
       if (type == 'all') {
-        this.setState({ displayedEvents: this.state.allEvents });
+        this.setState({
+          displayedEvents: this.state.allEvents,
+          dayTab: '',
+          monthTab: '',
+          allTab: 'clicked'
+        });
       }
     }
   }, {
@@ -6840,6 +6858,8 @@ var Events = function (_React$Component) {
         }
       });
       console.log("dayEvents", dayEvents);
+      if (monthEvents.length == 0) monthEvents = "No events to display for this month";
+      if (dayEvents.length == 0) dayEvents = "No events to display for this day";
       this.setState({
         monthEvents: monthEvents,
         dayEvents: dayEvents,
@@ -6851,12 +6871,7 @@ var Events = function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var date = this.props.monthName + ' ' + this.props.date + ', ' + this.props.year;
-
-      console.log(this.state);
-      console.log(this.props.date);
-      console.log(this.props.month);
-      console.log(this.state.dayEvents);
+      var date = this.props.monthName + ' ' + this.props.date;
 
       return _react2.default.createElement(
         'div',
@@ -6866,37 +6881,49 @@ var Events = function (_React$Component) {
           { className: 'tabs' },
           _react2.default.createElement(
             'div',
-            { className: 'day-events clickable', onClick: function onClick() {
+            { className: 'day-events clickable tab-container', onClick: function onClick() {
                 _this3.display('day');
               } },
             _react2.default.createElement(
-              'h2',
-              null,
-              date,
-              ' Events'
+              'div',
+              { className: 'tab ' + this.state.dayTab },
+              _react2.default.createElement(
+                'h2',
+                null,
+                date,
+                ' Events'
+              )
             )
           ),
           _react2.default.createElement(
             'div',
-            { className: 'month-events clickable', onClick: function onClick() {
+            { className: 'month-events clickable tab-container', onClick: function onClick() {
                 _this3.display('month');
               } },
             _react2.default.createElement(
-              'h2',
-              null,
-              this.props.monthName,
-              ' Events'
+              'div',
+              { className: 'tab ' + this.state.monthTab },
+              _react2.default.createElement(
+                'h2',
+                null,
+                this.props.monthName,
+                ' Events'
+              )
             )
           ),
           _react2.default.createElement(
             'div',
-            { className: 'all-events clickable', onClick: function onClick() {
+            { className: 'all-events clickable tab-container', onClick: function onClick() {
                 _this3.display('all');
               } },
             _react2.default.createElement(
-              'h2',
-              null,
-              'All Events'
+              'div',
+              { className: 'tab ' + this.state.allTab },
+              _react2.default.createElement(
+                'h2',
+                null,
+                'All Events'
+              )
             )
           )
         ),
@@ -9725,7 +9752,7 @@ var Calendar = _react2.default.createClass({
     },
     render: function render() {
         console.log("calendar state", this.state);
-        return _react2.default.createElement('div', { className: 'container' }, _react2.default.createElement('div', { className: 'r-calendar' }, _react2.default.createElement('div', { className: 'r-inner' }, _react2.default.createElement(Header, { monthNames: this.state.monthNamesFull, month: this.state.month, year: this.state.year, onPrev: this.getPrev, onNext: this.getNext }), _react2.default.createElement(WeekDays, { dayNames: this.state.dayNames, startDay: this.state.startDay, weekNumbers: this.state.weekNumbers }), _react2.default.createElement(MonthDates, { month: this.state.month, year: this.state.year, daysInMonth: this.state.daysInMonth, firstOfMonth: this.state.firstOfMonth, startDay: this.state.startDay, onSelect: this.selectDate, weekNumbers: this.state.weekNumbers, disablePast: this.state.disablePast, minDate: this.state.minDate }))), _react2.default.createElement(_events2.default, { year: this.state.year, date: this.state.selectedDate, month: this.state.month, monthName: this.state.monthNamesFull[this.state.month] }));
+        return _react2.default.createElement('div', { className: 'container' }, _react2.default.createElement('div', { className: 'r-calendar' }, _react2.default.createElement('div', { className: 'r-inner' }, _react2.default.createElement(Header, { monthNames: this.state.monthNamesFull, month: this.state.month, year: this.state.year, onPrev: this.getPrev, onNext: this.getNext }), _react2.default.createElement(WeekDays, { dayNames: this.state.dayNames, startDay: this.state.startDay, weekNumbers: this.state.weekNumbers }), _react2.default.createElement(MonthDates, { month: this.state.month, year: this.state.year, daysInMonth: this.state.daysInMonth, firstOfMonth: this.state.firstOfMonth, startDay: this.state.startDay, onSelect: this.selectDate, weekNumbers: this.state.weekNumbers, disablePast: this.state.disablePast, minDate: this.state.minDate }))), _react2.default.createElement(_events2.default, { year: this.state.year, date: this.state.selectedDate, month: this.state.month, monthName: this.state.monthNames[this.state.month] }));
     }
 });
 
@@ -9891,7 +9918,7 @@ var Event = function (_React$Component) {
             { className: "event-data" },
             _react2.default.createElement(
               "div",
-              { className: "row" },
+              { className: "row title-and-date" },
               _react2.default.createElement(
                 "div",
                 { className: "title" },
@@ -9919,7 +9946,7 @@ var Event = function (_React$Component) {
               ),
               _react2.default.createElement(
                 "div",
-                null,
+                { className: "attend" },
                 event.invited_count
               )
             )
@@ -22215,12 +22242,14 @@ var Root = function (_React$Component) {
         _react2.default.createElement(
           'h1',
           null,
-          'Special Occasions'
+          'Intercom Special Occasions'
         ),
         _react2.default.createElement(
           'div',
           { className: 'subtitle' },
-          'Click on the calendar and tabs below to see special occasions for a particular day or month. Click on \'All Events\' to see all your saved events.'
+          'Click on the calendar and tabs below to see special occasions for a particular day or month. ',
+          _react2.default.createElement('br', null),
+          '\'All Events\' shows all your saved events.'
         ),
         _react2.default.createElement(_calendar2.default, null)
       );
