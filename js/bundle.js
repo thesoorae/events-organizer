@@ -22251,7 +22251,12 @@ var Root = function (_React$Component) {
           _react2.default.createElement('br', null),
           '\'All Events\' shows all your saved events.'
         ),
-        _react2.default.createElement(_calendar2.default, null)
+        _react2.default.createElement(_calendar2.default, null),
+        _react2.default.createElement(
+          'div',
+          { className: 'footer' },
+          'me@thesoorae.com'
+        )
       );
     }
   }]);

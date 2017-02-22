@@ -16,6 +16,10 @@ class Root extends React.Component {
          day or month. <br />'All Events' shows all your saved events.
         </div>
         <Calendar />
+        <div className="footer">
+        me@thesoorae.com
+
+        </div>
 
       </div>
     );
