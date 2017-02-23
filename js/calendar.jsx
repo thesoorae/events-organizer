@@ -1,3 +1,5 @@
+//Calendar derived from Dimitar Ivanov's React calendar  https://github.com/riverside/react-calendar
+
 import React from 'react';
 import Events from './events';
 
